@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".DetailActivity">
+
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+    <ImageView
+        android:layout_width="320dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:id="@+id/image"
+        android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#000"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:id="@+id/nameItem"
+            android:layout_marginTop="10dp"/>
+           <TextView
+               android:id="@+id/vIngredients"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textColor="#000"
+               android:textSize="20sp"
+               android:text="Ingredients"
+               android:textStyle="bold"
+               android:layout_marginLeft="10dp"
+               android:layout_marginTop="10dp"
+               />
+           <TextView
+               android:id="@+id/ingredientsItem"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Ingredients"
+               android:textColor="#000"
+               android:textSize="15sp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginTop="10dp"
+               />
+
+
+           <TextView
+               android:id="@+id/vInstructions"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textColor="#000"
+               android:textSize="20sp"
+               android:textStyle="bold"
+               android:text="Instructions"
+               android:layout_marginLeft="10dp"
+               android:layout_marginTop="10dp"
+               />
+
+           <TextView
+               android:id="@+id/instructionsItem"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textColor="#000"
+               android:textSize="15sp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginTop="10dp"
+               />
+
+           <Button
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Delete"
+               android:textColor="#fff"
+               android:layout_gravity="center"
+               android:onClick="deleteItem"
+               android:layout_marginTop="15dp"/>
+
+
+
+
+
+
+
+       </LinearLayout>
+
+   </ScrollView>
+
+
+</LinearLayout>
