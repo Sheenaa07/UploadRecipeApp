@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.uploadrecipe.Adapter.DataAdapter;
@@ -29,22 +32,28 @@ public class MainActivity extends AppCompatActivity implements Callback {
     DatabaseReference databaseReference;
     ProgressDialog progressDialog;
 
+    EditText editSearch;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView=findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        recyclerView = findViewById(R.id.recyclerView);
+        editSearch = findViewById(R.id.editSearch);
+
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
-        arrayList=new ArrayList<>();
-        progressDialog= new ProgressDialog(this);
+        arrayList = new ArrayList<>();
+        progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Item Loading...");
-        databaseReference= FirebaseDatabase.getInstance().getReference("UploadRecipe");
+        databaseReference = FirebaseDatabase.getInstance().getReference("UploadRecipe");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayList.clear();
-                for (DataSnapshot ds:dataSnapshot.getChildren()) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
                     Recipe recipe = ds.getValue(Recipe.class);
                     recipe.setKey(ds.getKey());
@@ -52,18 +61,56 @@ public class MainActivity extends AppCompatActivity implements Callback {
 
 
                 }
-                adapter = new DataAdapter(MainActivity.this, arrayList,MainActivity.this);
+                adapter = new DataAdapter(MainActivity.this, arrayList, MainActivity.this);
                 recyclerView.setAdapter(adapter);
                 progressDialog.dismiss();
 
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(MainActivity.this,"Error"+databaseError.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Error" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
             }
         });
+
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String itemName=s.toString();
+                ArrayList<Recipe>recipeArrayList=new ArrayList<>();
+                for (Recipe r:arrayList) {
+
+                    if(r.getName().toLowerCase().contains(itemName))
+                    {
+                        recipeArrayList.add(r);
+                    }
+                    adapter.searchITemName(recipeArrayList);
+
+                }
+
+
+
+            }
+        });
+
+
+
+
+
+
+
     }
 
 

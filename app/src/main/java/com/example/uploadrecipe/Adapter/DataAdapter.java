@@ -66,6 +66,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataViewHolder
     }
 
 
+
+
     public class DataViewHolder extends RecyclerView.ViewHolder
     {
 
@@ -80,5 +82,11 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataViewHolder
 
 
         }
+    }
+
+    public void searchITemName(ArrayList<Recipe> recipeArrayList) {
+        arrayList=recipeArrayList;
+        notifyDataSetChanged();
+
     }
 }
