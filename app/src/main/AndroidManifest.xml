@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UploadRecipe">
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".UpdateRecipeActivity"></activity>
+        <activity android:name=".DetailActivity" />
         <activity android:name=".Upload" />
         <activity android:name=".MainActivity">
             <intent-filter>

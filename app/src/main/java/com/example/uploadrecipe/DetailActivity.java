@@ -23,8 +23,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvItemName;
     TextView tvItemIngredients;
     TextView tvItemInstructions;
-    String photoUrl;
-    String key;
+    String photoUrl="";
+    String key="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +77,18 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(DetailActivity.this,"Error"+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    public void UpdateItem(View view) {
+        startActivity(new Intent(getApplicationContext(),UpdateRecipeActivity.class)
+        .putExtra("tvItemNameKey",tvItemName.getText().toString())
+        .putExtra("tvItemIngredientsKey",tvItemIngredients.getText().toString())
+                        .putExtra("tvItemInstructionsKey", tvItemInstructions.getText().toString())
+                .putExtra("OldphotoUrl",photoUrl)
+                .putExtra("key",key)
+        );
+
 
     }
 }
